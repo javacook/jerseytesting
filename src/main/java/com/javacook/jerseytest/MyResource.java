@@ -21,7 +21,7 @@ public class MyResource {
     @Path("/hello")
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return "Hello " + service.getGreeting();
+        return "Hello " + service.getPalName();
     }
 
 }

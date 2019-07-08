@@ -2,5 +2,5 @@ package com.javacook.jerseytest;
 
 public interface MyService {
 
-    String getGreeting();
+    String getPalName();
 }

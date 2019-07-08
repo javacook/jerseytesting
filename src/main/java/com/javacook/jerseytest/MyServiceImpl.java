@@ -6,7 +6,7 @@ public class MyServiceImpl implements MyService {
         System.out.println("MyServiceImpl-Konstruktor");
     }
 
-    public String getGreeting() {
+    public String getPalName() {
         return "Joooeerg";
     }
 }
