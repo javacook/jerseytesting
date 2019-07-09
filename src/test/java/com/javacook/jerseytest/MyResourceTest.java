@@ -9,6 +9,8 @@ import org.junit.Test;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class MyResourceTest extends JerseyTest {
 
@@ -31,8 +33,10 @@ public class MyResourceTest extends JerseyTest {
     }
 
     @Test
-    public void hello() {
+    public void testGetRequestSayHello() {
         final Response response = target("/say/hello").request().get();
         Assert.assertEquals(200, response.getStatus());
+        String content = response.readEntity(String.class);
+        assertThat(content).isEqualTo("Hello Schnucki");
     }
 }

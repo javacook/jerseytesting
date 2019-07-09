@@ -7,6 +7,6 @@ public class MyServiceImpl implements MyService {
     }
 
     public String getPalName() {
-        return "Joooeerg";
+        return "Schnucki";
     }
 }
