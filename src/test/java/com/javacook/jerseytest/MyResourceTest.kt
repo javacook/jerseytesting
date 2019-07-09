@@ -7,34 +7,13 @@ import org.glassfish.hk2.utilities.binding.AbstractBinder
 import org.glassfish.jersey.server.ResourceConfig
 import org.glassfish.jersey.test.JerseyTest
 import org.junit.Test
-import javax.ws.rs.ApplicationPath
 import javax.ws.rs.core.Response
+import kotlin.reflect.KClass
 
 class YourResourceTest : JerseyTest() {
 
-//    class MyKotlinConfig : ResourceConfig() {
-//        init {
-//            register(MyResource::class.java)
-//            register(object : AbstractBinder() {
-//                override fun configure() {
-//                    // bindAsContract(MyServiceImpl.class);
-//                    bind(MyServiceImpl::class.java).to(MyService::class.java)
-//                }
-//            })
-//        }
-//    }
-
-    override fun configure() = object: ResourceConfig() {
-        init {
-            register(MyResource::class.java)
-            register(object : AbstractBinder() {
-                override fun configure() {
-                    // bindAsContract(MyServiceImpl.class);
-                    bind(MyServiceImpl::class.java).to(MyService::class.java)
-                }
-            })
-        }
-    }
+    override fun configure() = createResourceConfig(MyResource::class,
+            MyServiceImpl::class to MyService::class)
 
     @Test
     fun hello() {
@@ -43,16 +22,48 @@ class YourResourceTest : JerseyTest() {
     }
 
 
-
-
     @Test
     fun `Mit Kotlin lassen sich noch coolere Sachen machen`() {
         val response = target("/say/hello").request().get()
         assertThat(response).hasStatus(200)
     }
 
+
+
+
+
+
+
+
+
     // Dies ist eine Extension Function:
     fun Assert<Response>.hasStatus(expected: Int) = given {
         actual -> assertThat(actual.status).isEqualTo(expected)
     }
+
+
+
+
+
+
+
+
+
+
+    fun createResourceConfig(resource: KClass<*>,
+                             vararg bindings: Pair<KClass<*>, KClass<*>>): ResourceConfig {
+        return object: ResourceConfig() {
+            init {
+                register(resource.java)
+                register(object : AbstractBinder() {
+                    override fun configure() {
+                        bindings.forEach {
+                            bind(it.first.java).to(it.second.java)
+                        }
+                    }
+                })
+            }
+        }
+    }
+
 }

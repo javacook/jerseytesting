@@ -6,7 +6,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.ws.rs.ApplicationPath;
 
 
-@ApplicationPath("/jerseytesting")
 public class MyTestConfig extends ResourceConfig {
 
     public MyTestConfig() {
