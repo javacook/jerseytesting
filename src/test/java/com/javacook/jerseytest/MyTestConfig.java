@@ -7,15 +7,15 @@ import javax.ws.rs.ApplicationPath;
 
 
 @ApplicationPath("/jerseytesting")
-public class MyAppConfig extends ResourceConfig {
+public class MyTestConfig extends ResourceConfig {
 
-    public MyAppConfig() {
+    public MyTestConfig() {
         register(MyResource.class);
         register(new AbstractBinder() {
             @Override
             protected void configure() {
-                bindAsContract(MyServiceImpl.class);
-                // bind(MyServiceImpl.class).to(MyService.class);
+                // bindAsContract(MyServiceImpl.class);
+                bind(MyServiceImpl.class).to(MyService.class);
             }
         });
     }

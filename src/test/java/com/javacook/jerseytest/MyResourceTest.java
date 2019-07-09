@@ -9,11 +9,9 @@ import javax.ws.rs.core.Response;
 
 public class MyResourceTest extends JerseyTest {
 
-
     @Override
     public Application configure() {
-        return new MyAppConfig();
-//        return new ResourceConfig(MyResource.class).packages("com.javacook.jerseytest")
+        return new MyTestConfig();
     }
 
     @Test
