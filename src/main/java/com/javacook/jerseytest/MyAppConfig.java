@@ -14,8 +14,8 @@ public class MyAppConfig extends ResourceConfig {
         register(new AbstractBinder() {
             @Override
             protected void configure() {
-                bindAsContract(MyServiceImpl.class);
-                // bind(MyServiceImpl.class).to(MyService.class);
+                // bindAsContract(MyServiceImpl.class);
+                bind(MyServiceImpl.class).to(MyService.class);
             }
         });
     }
