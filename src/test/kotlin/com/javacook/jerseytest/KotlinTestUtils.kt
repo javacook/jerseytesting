@@ -19,6 +19,9 @@ fun Assert<Response>.hasContent(expected: String) = given {
 }
 
 
+
+
+
 fun createResourceConfig(resource: KClass<*>,
                          vararg bindings: Pair<KClass<*>, KClass<*>>): ResourceConfig {
     return object: ResourceConfig() {

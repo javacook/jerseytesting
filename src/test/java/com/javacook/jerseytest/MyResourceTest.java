@@ -3,8 +3,8 @@ package com.javacook.jerseytest;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+//import org.junit.Test;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
@@ -35,7 +35,7 @@ public class MyResourceTest extends JerseyTest {
     @Test
     public void testGetRequestSayHello() {
         final Response response = target("/say/hello").request().get();
-        Assert.assertEquals(200, response.getStatus());
+        assertThat(response.getStatus()).isEqualTo(200);
         String content = response.readEntity(String.class);
         assertThat(content).isEqualTo("Hello Schnucki");
     }
