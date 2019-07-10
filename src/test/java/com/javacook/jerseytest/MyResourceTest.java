@@ -36,6 +36,7 @@ public class MyResourceTest extends JerseyTest {
     public void testGetRequestSayHello() {
         final Response response = target("/say/hello").request().get();
         assertThat(response.getStatus()).isEqualTo(200);
+
         String content = response.readEntity(String.class);
         assertThat(content).isEqualTo("Hello Schnucki");
     }

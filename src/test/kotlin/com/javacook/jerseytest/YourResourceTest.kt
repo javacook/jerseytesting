@@ -18,6 +18,9 @@ class YourResourceTest : JerseyTest() {
     fun testGetRequestSayHello() {
         val response = target("/say/hello").request().get()
         assertThat(response.status).isEqualTo(200)
+
+        val content = response.readEntity(String::class.java)
+        assertThat(content).isEqualTo("Hello Schnucki")
     }
 
 
